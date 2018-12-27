@@ -46,7 +46,7 @@ false;
 
 ```
 
-##Operators
+## Operators
 
 ```javascript
 // Operators have both a precedence (order of importance, like * before +) 
@@ -121,7 +121,7 @@ x instanceof Object // = true
 x instanceof Function // = false
 ```
 
-###The in Operator
+### The in Operator
 
 **The in operator returns true if the specified property is in the specified object, otherwise false: Use for…in to iterate over the properties of an object (the object keys):**
 
@@ -311,7 +311,7 @@ html = `
 document.body.innerHTML = html;
 ```
 
-##Arrays
+## Arrays
 
 ```javascript
 var dogs = ["Bulldog", "Beagle", "Labrador"]; 
@@ -325,7 +325,7 @@ for (var i = 0; i < dogs.length; i++) {     // parsing with array.length
 }
 ```
 
-###Array Methods
+### Array Methods
 
 ```javascript
 dogs.toString();                        // convert to string: results "Bulldog,Beagle,Labrador"
@@ -347,7 +347,7 @@ highest = x[0];                         // first item in sorted array is the low
 x.sort(function(a, b){return 0.5 - Math.random()});     // random order sort
 ```
 
-##Dates
+## Dates
 
 ```javascript
 var d = new Date();
@@ -360,7 +360,7 @@ Date("June 23 2017");               // long date format
 Date("Jun 23 2017 07:45:00 GMT+0100 (Tokyo Time)"); // time zone
 ```
 
-###Get Time
+### Get Time
 
 ```javascript
 var d = new Date();
@@ -377,7 +377,7 @@ getSeconds();       // seconds (0-59)
 getTime();          // milliseconds since 1970
 ```
 
-###Set Time
+### Set Time
 
 ```javascript
 var d = new Date();
@@ -393,7 +393,7 @@ setSeconds();       // seconds (0-59)
 setTime();          // milliseconds since 1970)
 ```
 
-##ForEach
+## ForEach
 
 ```javascript
 const cars = ['Ford', 'Chevy', 'Honda', 'Toyota'];
@@ -403,7 +403,7 @@ cars.forEach(function(car, index, array){
 });
 ```
 
-##MAP
+## MAP
 
 ```javascript
 const users  = [
@@ -420,7 +420,7 @@ const ids = users.map(function(user){
 console.log(ids);
 ```
 
-## i. Objects 
+## Objects 
 An object is simply an unordered collection of key-value pairs.
 ```javascript
 // They can be made literally:
