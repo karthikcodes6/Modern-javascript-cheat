@@ -121,7 +121,7 @@ x instanceof Object // = true
 x instanceof Function // = false
 ```
 
-### The in Operator
+**The in Operator**
 
 **The in operator returns true if the specified property is in the specified object, otherwise false: Use for…in to iterate over the properties of an object (the object keys):**
 
@@ -168,9 +168,9 @@ for (let index in str) {
 // Index of u: 1
 ```
 
-## The of Operator
+**The of Operator**
 
-**Use for…of to iterate over the values in an iterable, like an array for example: Strings are also an iterable type, so you can use for…of on strings:**
+__Use for…of to iterate over the values in an iterable, like an array for example: Strings are also an iterable type, so you can use for…of on strings:__
 
 ```javascript
 let animals = ['🐔', '🐷', '🐑', '🐇'];
@@ -217,7 +217,7 @@ Number.NEGATIVE_INFINITY// -Infinity
 Number.POSITIVE_INFINITY// Infinity
 ```
 
-### Math Methods
+**Math Methods**
 
 ```javascript
 var pi = Math.PI;       // 3.141592653589793
@@ -325,7 +325,7 @@ for (var i = 0; i < dogs.length; i++) {     // parsing with array.length
 }
 ```
 
-### Array Methods
+**Array Methods**
 
 ```javascript
 dogs.toString();                        // convert to string: results "Bulldog,Beagle,Labrador"
@@ -360,7 +360,7 @@ Date("June 23 2017");               // long date format
 Date("Jun 23 2017 07:45:00 GMT+0100 (Tokyo Time)"); // time zone
 ```
 
-### Get Time
+**Get Time**
 
 ```javascript
 var d = new Date();
@@ -377,7 +377,7 @@ getSeconds();       // seconds (0-59)
 getTime();          // milliseconds since 1970
 ```
 
-### Set Time
+**Set Time**
 
 ```javascript
 var d = new Date();
@@ -403,7 +403,7 @@ cars.forEach(function(car, index, array){
 });
 ```
 
-## MAP
+**MAP**
 
 ```javascript
 const users  = [
@@ -481,7 +481,7 @@ let journal = [
 ];
 ```
 
-## ii. Functions 
+## Functions 
 The function's code is executed by the invocation operator `()`.
 
 __Function Declaration__
@@ -511,7 +511,7 @@ __IMMIDIATLEY INVOKABLE FUNCTION EXPRESSIONS - IIFEs__
 })('Brad');
 ```
 
-### __Property Methods__
+__Property Methods__
 
 ```javascript
 const todo = {
@@ -532,7 +532,7 @@ todo.edit(22);
 todo.delete();
 ```
 
-<a name="triple-dot"></a>
+
 ### __triple-dot Operator or Rest Parameter__ 
 
 ```javascript
