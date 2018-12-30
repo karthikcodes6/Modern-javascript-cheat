@@ -1119,3 +1119,400 @@ function runEvent(e){
   // e.preventDefault();
 }
 ```
+
+### Event Bubbling
+
+```javascript
+// EVENT BUBBLING
+
+// document.querySelector('.card-title').addEventListener('click', function(){
+//   console.log('card title');
+// });
+
+// document.querySelector('.card-content').addEventListener('click', function(){
+//   console.log('card content');
+// });
+
+// document.querySelector('.card').addEventListener('click', function(){
+//   console.log('card');
+// });
+
+// document.querySelector('.col').addEventListener('click', function(){
+//   console.log('col');
+// });
+
+// EVENT DELGATION
+
+// const delItem = document.querySelector('.delete-item');
+
+// delItem.addEventListener('click', deleteItem);
+
+document.body.addEventListener('click', deleteItem);
+
+function deleteItem(e){
+  // if(e.target.parentElement.className === 'delete-item secondary-content'){
+  //   console.log('delete item');
+  // }
+
+  if(e.target.parentElement.classList.contains('delete-item')){
+    console.log('delete item');
+    e.target.parentElement.parentElement.remove();
+  }
+}
+```
+
+### LOCAL SESSION STORAGE
+
+```javascript
+// set local storage item
+// localStorage.setItem('name', 'John');
+// localStorage.setItem('age', '30');
+
+// set session storage item
+// sessionStorage.setItem('name', 'Beth');
+
+// remove from storage
+// localStorage.removeItem('name');
+
+// get from storage
+// const name = localStorage.getItem('name');
+// const age = localStorage.getItem('age');
+
+// // clear local storage
+// localStorage.clear();
+
+// console.log(name, age);
+
+document.querySelector('form').addEventListener('submit', function(e){
+  const task = document.getElementById('task').value;
+
+  let tasks;
+
+  if(localStorage.getItem('tasks') === null) {
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.push(task);
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+
+  alert('Task saved');
+
+  e.preventDefault();
+});
+
+const tasks = JSON.parse(localStorage.getItem('tasks'));
+
+tasks.forEach(function(task){
+  console.log(task);
+});
+```
+
+## OOP JS
+
+### CONSTRUCTOR / THIS keyword
+
+```javascript
+// Person constructor
+function Person(name, dob) {
+  this.name = name;
+  // this.age = age;
+  this.birthday = new Date(dob);
+  this.calculateAge = function(){
+    const diff =  Date.now() - this.birthday.getTime();
+    const ageDate = new Date(diff);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+}
+
+// const brad = new Person('Brad', 36);
+// const john = new Person('John', 30);
+
+// console.log(john.age);
+
+const brad = new Person('Brad', '9-10-1981');
+console.log(brad.calculateAge());
+```
+
+### Built in Constructor
+
+#### STRING
+
+```javascript
+const name1 = 'Jeff';
+const name2 = new String('Jeff');
+
+//name2.foo = 'bar';
+// console.log(name2);
+
+console.log(typeof name2);
+
+if(name2 === 'Jeff'){
+  console.log('YES');
+} else {
+  console.log('NO');
+}
+```
+
+#### NUMBER
+
+```javascript
+const num1 = 5;
+const num2 = new Number(5);
+}
+```
+
+#### BOOLEAN
+
+```javascript
+const bool1 = true;
+const bool2 = new Boolean(true);
+```
+
+#### FUNCTION
+
+```javascript
+const getSum1 = function(x, y){
+  return x + y;
+}
+
+const getSum2 = new Function('x','y', 'return 1 + 1');
+```
+
+#### OBJECT
+
+```javascript
+const john1 = {name: "John"};
+const john2 = new Object({name: "John"});
+console.log(john2);
+```
+
+#### ARRAYS
+
+```javascript
+const arr1 = [1,2,3,4];
+const arr2 = new Array(1,2,3,4);
+```
+
+#### REGULAR EXPRESSION
+
+```javascript
+const re1 = /\w+/;
+const re2 = new RegExp('\\w+');
+
+console.log(re2);
+```
+
+### PROTOTYPE (Object.prototype)
+
+```javascript
+// Person constructor
+function Person(firstName, lastName, dob) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.birthday = new Date(dob);
+  // this.calculateAge = function(){
+  //   const diff =  Date.now() - this.birthday.getTime();
+  //   const ageDate = new Date(diff);
+  //   return Math.abs(ageDate.getUTCFullYear() - 1970);
+  // }
+}
+
+// Calculate age
+Person.prototype.calculateAge = function(){
+  const diff =  Date.now() - this.birthday.getTime();
+  const ageDate = new Date(diff);
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
+
+// Get full name
+Person.prototype.getFullName = function(){
+  return `${this.firstName} ${this.lastName}`;
+}
+
+// Gets Married
+Person.prototype.getsMaried = function(newLastName){
+  this.lastName = newLastName;
+}
+
+const john = new Person('John', 'Doe', '8-12-90');
+const mary = new Person('Mary', 'Johnson', 'March 20 1978');
+
+console.log(mary);
+
+console.log(john.calculateAge());
+
+console.log(mary.getFullName());
+
+mary.getsMaried('Smith');
+
+console.log(mary.getFullName());
+
+console.log(mary.hasOwnProperty('firstName'));
+console.log(mary.hasOwnProperty('getFullName'));
+```
+
+### INHERITANCE using prototype
+
+**Person constructor**
+
+```javascript
+// Person constructor
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+```
+
+**Adding property to the Person constructor**
+
+```javascript
+// Greeting
+Person.prototype.greeting = function(){
+  return `Hello there ${this.firstName} ${this.lastName}`;
+}
+
+const person1 = new Person('John', 'Doe');
+
+console.log(person1.greeting());
+```
+
+**Customer constructor**
+
+```javascript
+function Customer(firstName, lastName, phone, membership) {
+  Person.call(this, firstName, lastName);
+
+  this.phone = phone;
+  this.membership = membership;
+}
+```
+
+**Inherit the Person prototype methods**
+
+```javascript
+// Inherit the Person prototype methods
+Customer.prototype = Object.create(Person.prototype);
+
+// Make customer.prototype return Customer()
+Customer.prototype.constructor = Customer;
+
+// Create customer
+const customer1 = new Customer('Tom', 'Smith', '555-555-5555', 'Standard');
+
+console.log(customer1);
+
+// Customer greeting
+Customer.prototype.greeting = function(){
+  return `Hello there ${this.firstName} ${this.lastName} welcome to our company`;
+}
+
+console.log(customer1.greeting());
+```
+
+### **Object.create**
+The Object.create() method creates a new object, using an existing object as the prototype of the newly created object.
+
+```javascript
+const personPrototypes = {
+  greeting: function() {
+    return `Hello there ${this.firstName} ${this.lastName}`;
+  },
+  getsMarried: function(newLastName) {
+    this.lastName = newLastName;
+  }
+}
+
+const mary = Object.create(personPrototypes);
+mary.firstName = 'Mary';
+mary.lastName = 'Williams';
+mary.age = 30;
+
+mary.getsMarried('Thompson');
+
+console.log(mary.greeting());
+
+const brad = Object.create(personPrototypes, {
+  firstName: {value: 'Brad'},
+  lastName: {value: 'Traversy'},
+  age: {value: 36}
+});
+
+console.log(brad);
+
+console.log(brad.greeting());
+```
+
+### Classes
+
+```javascript
+class Person {
+  constructor(firstName, lastName, dob) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.birthday = new Date(dob);
+  }
+
+  greeting() {
+    return `Hello there ${this.firstName} ${this.lastName}`;
+  }
+
+  calculateAge() {
+    const diff = Date.now() - this.birthday.getTime();
+    const ageDate = new Date(diff);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+  getsMarried(newLastName) {
+    this.lastName = newLastName;
+  }
+
+  static addNumbers(x, y) {
+    return x + y;
+  }
+}
+
+const mary = new Person('Mary', 'Williams', '11-13-1980');
+
+mary.getsMarried('Thompson');
+
+console.log(mary);
+
+console.log(Person.addNumbers(1,2));
+```
+
+### Sub Classes
+
+```javascript
+class Person {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  greeting() {
+    return `Hello there ${this.firstName} ${this.lastName}`;
+  }
+}
+
+class Customer extends Person {
+  constructor(firstName, lastName, phone, membership) {
+    super(firstName, lastName);
+
+    this.phone = phone;
+    this.membership = membership;
+  }
+
+  static getMembershipCost() {
+    return 500;
+  }
+}
+
+const john = new Customer('John', 'Doe', '555-555-5555', 'Standard');
+
+console.log(john.greeting());
+
+console.log(Customer.getMembershipCost());
+```
