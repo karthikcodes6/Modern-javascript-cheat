@@ -1516,3 +1516,4 @@ console.log(john.greeting());
 
 console.log(Customer.getMembershipCost());
 ```
+Hello 
